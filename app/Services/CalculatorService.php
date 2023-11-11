@@ -1,13 +1,9 @@
 <?php 
 
 namespace App\Services;
-use App\Http\Requests\InputRequest;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 
 class CalculatorService {
 
-    private $inputRequestForm;
     private const PLANETS = [
         'mercury' => 0.2408467,
         'venus' => 0.61519726,
@@ -31,9 +27,10 @@ class CalculatorService {
         }
 
         $seconds = $request['seconds'];
-        $earthYears = $seconds / 31557600; // according to the enunciate, 1 earth year = 365.25 earth days, and by my calculations the result would be this value..
-
-        $age = $earthYears / self::PLANETS[$planet];
+        
+        $earthYears = $seconds / (365.25 * 24 * 60 * 60); // according to the enunciate, 1 earth year = 365.25 earth days, and by my calculations the result would be this value..31557600
+        $age = $earthYears * self::PLANETS[$planet];
+        dd($age);
 
         $age = round($age, 2);
         return ['result' => "{$age} Earth-years-old"];
