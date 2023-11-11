@@ -30,7 +30,6 @@ class CalculatorService {
         
         $earthYears = $seconds / (365.25 * 24 * 60 * 60); // according to the enunciate, 1 earth year = 365.25 earth days, and by my calculations the result would be this value..31557600
         $age = $earthYears * self::PLANETS[$planet];
-        dd($age);
 
         $age = round($age, 2);
         return ['result' => "{$age} Earth-years-old"];
